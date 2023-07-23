@@ -55,6 +55,7 @@ const getAllEmployees = async (req, res) => {
 const getEmployeeById = async (req, res) => {
   const getEmployeeByIdQuery = "SELECT * FROM employee WHERE eid = $1";
   const { id } = req.params;
+  if (isNaN(id)) return res.status(422).json({ message: "Invalid data type" });
   const result = await pool.query(getEmployeeByIdQuery, [id]);
   try {
     if (result.rows.length === 0) {
