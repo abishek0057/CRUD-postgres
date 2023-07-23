@@ -16,6 +16,12 @@ app.get("/", (req, res) => {
   res.send("Wellcome to CRUD opertion in Postgres");
 });
 
+app.use((req, res) => {
+  res.status(404).json({
+    message: `No such route: ${req.url}`,
+  });
+});
+
 app.listen(5555, () => {
   console.log("running...");
 });
